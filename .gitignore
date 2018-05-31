@@ -21,3 +21,15 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Intellij Idea system files
+/Client/.idea
+/Client/target
+/Server/.idea
+/Client/target
+
+# Client and Server some files for work and Maven configuration
+/Client/Client.iml
+/Client/pom.xml
+/Server/Server.iml
+/Server/pom.xml
