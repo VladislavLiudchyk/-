@@ -35,7 +35,7 @@ public class RegisterPack extends AbstractPack{
 
     @Override
     public void handle() {
-        
+
     }
 
 }

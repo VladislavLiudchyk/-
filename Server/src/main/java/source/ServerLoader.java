@@ -80,4 +80,15 @@ public class ServerLoader {
         System.exit(0);
     }
 
+    public static String getAdminName() {
+        return adminName;
+    }
+
+    public static String getAdminPass() {
+        return adminPass;
+    }
+
+    public static File getRoot() {
+        return root;
+    }
 }
