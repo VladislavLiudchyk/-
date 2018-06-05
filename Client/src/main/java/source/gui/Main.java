@@ -2,6 +2,8 @@ package source.gui;
 
 import org.apache.log4j.Logger;
 import source.classes.User;
+import source.packet.AbstractPack;
+import source.packet.PacketManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +19,8 @@ import java.net.Socket;
  */
 public class Main {
 
+    private static ConnectionWindow connectionWindow;
+
     private static Socket socket;
     private static ObjectOutputStream oos;
     private static ObjectInputStream ois;
@@ -30,7 +34,7 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                connect();
+                connectionWindow = new ConnectionWindow();
             }
         });
     }
@@ -51,6 +55,9 @@ public class Main {
                     continue;
                 }
                 short id = ois.readShort();
+                AbstractPack packet = PacketManager.getPacket(id);
+                packet.read(ois);
+                packet.handle();
                 log.info("Получен пакет: " + id);
                 break;
             } catch (Exception e) {
@@ -79,14 +86,45 @@ public class Main {
     /**
      * Подключает клиента к серверу
      */
-    private static void connect() {
+    private static void connect(String IP, Integer Port) {
         log.info("Подключение");
         try {
-            socket = new Socket("localhost", 8888);
+            //socket = new Socket("localhost", 8888);
+            socket = new Socket(IP, Port);
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             log.error(e.toString());
         }
     }
+
+    /**
+     * Отправляет пакет серверу и ожидает ответ
+     * @param packet
+     */
+    public synchronized static void sendPacket(AbstractPack packet) {
+        try {
+            oos.writeShort(packet.getId());
+            packet.write(oos);
+            oos.flush();
+            log.info("Отправлен пакет" + packet.getId());
+            waitServer();
+        } catch (Exception e) {
+            log.error(e.toString());
+            JOptionPane.showMessageDialog(null, "Сервер недоступен");
+        }
+    }
+
+    public static ConnectionWindow getConnectionWindow() {
+        return connectionWindow;
+    }
+
+    public static void setConnectionWindow() {
+        Main.connectionWindow = connectionWindow;
+    }
+
+    public static void setConnection(String IP, Integer Port) {
+        connect(IP, Port);
+    }
+
 }
