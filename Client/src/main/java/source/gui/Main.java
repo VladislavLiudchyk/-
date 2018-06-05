@@ -15,13 +15,17 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
- * Главный класс юзера
+ * Главный класс пользователя
  */
 public class Main {
 
     private static ConnectionWindow connectionWindow;
     private static EnterWindow enterWindow;
     private static RegisterWindow registerWindow;
+    private static MainWindow mainWindow;
+    private static AdminWindow adminWindow;
+    private static CreateArchiveWindow createArchiveWindow;
+
 
     private static Socket socket;
     private static ObjectOutputStream oos;
@@ -142,5 +146,25 @@ public class Main {
     }
 
     public static void setEnterWindow(EnterWindow enterWindow) { Main.enterWindow = enterWindow; }
+
+    public static MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
+    public static void setMainWindow(MainWindow mainWindow) {
+        Main.mainWindow = mainWindow;
+    }
+
+    public static CreateArchiveWindow getCreateCaseWindow() {
+        return createArchiveWindow;
+    }
+
+    public static void setCreateCaseWindow(CreateArchiveWindow createCaseWindow) { Main.createArchiveWindow = createArchiveWindow; }
+
+    public static AdminWindow getAdminWindow() {
+        return adminWindow;
+    }
+
+    public static void setAdminWindow(AdminWindow adminWindow) { Main.adminWindow = adminWindow; }
 
 }
