@@ -17,6 +17,8 @@ public class ServerLoader {
     private static String adminName = "admin";
     private static String adminPass = "admin";
     private static File root = new File("Archives");
+    public static Map<Socket, ClientHandler> handlers = new HashMap<>();
+    private static ServerHandler handler;
 
     private static final Logger log = Logger.getLogger(ServerLoader.class);
 
@@ -27,8 +29,8 @@ public class ServerLoader {
     public static void main(String[] args) {
         System.out.println("Сервер запущен");
         start();
-        read();
-        //end();
+        handle();
+        end();
     }
 
     /**
@@ -36,6 +38,32 @@ public class ServerLoader {
      */
     private static void start() {
         log.info("Запуск сервера");
+        root.mkdir();
+
+        File idFile = new File("idFile");
+        if (!idFile.exists()) {
+            try {
+                idFile.createNewFile();
+                PrintWriter out = new PrintWriter(idFile.getAbsoluteFile());
+                out.print(0);
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File typeParserFile = new File("typeParserFile");
+        if (!typeParserFile.exists()) {
+            try {
+                typeParserFile.createNewFile();
+                PrintWriter out = new PrintWriter(typeParserFile.getAbsoluteFile());
+                out.print(2);
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             server = new ServerSocket(8888);
         } catch (IOException e)
@@ -68,6 +96,15 @@ public class ServerLoader {
     }
 
     /**
+     * Старт нового потока ServerHandler
+     */
+    private static void handle() {
+        handler = new ServerHandler(server);
+        handler.start();
+        read();
+    }
+
+    /**
      * Завершение работы сервера
      */
     public static void end() {
@@ -90,5 +127,17 @@ public class ServerLoader {
 
     public static File getRoot() {
         return root;
+    }
+
+    public static ServerHandler getServerHandler() {
+        return handler;
+    }
+
+    public static ClientHandler getHandle(Socket socket) {
+        return handlers.get(socket);
+    }
+
+    public static void invalidate(Socket socket) {
+        handlers.remove(socket);
     }
 }
