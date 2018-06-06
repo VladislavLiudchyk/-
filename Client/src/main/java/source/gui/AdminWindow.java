@@ -31,6 +31,7 @@ public class AdminWindow {
 
         JButton backBtn = new JButton(new ImageIcon(backImg.getImage().getScaledInstance(30, 30, backImg.getImage().SCALE_DEFAULT)));
         backBtn.setBorderPainted(false);
+        backBtn.setToolTipText("Назад");
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

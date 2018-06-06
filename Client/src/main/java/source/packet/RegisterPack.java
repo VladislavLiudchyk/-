@@ -2,6 +2,8 @@ package source.packet;
 
 import org.omg.CORBA.Object;
 import source.classes.User;
+import source.gui.RegisterWindow;
+
 import java.io.*;
 
 /**
@@ -35,7 +37,7 @@ public class RegisterPack extends AbstractPack{
 
     @Override
     public void handle() {
-
+        RegisterWindow.setAnswer(answer);
     }
 
 }

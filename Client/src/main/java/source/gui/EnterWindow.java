@@ -60,9 +60,11 @@ public class EnterWindow {
                 if (!(username.getText().equals("") || password.getText().equals(""))) {
                     Main.sendPacket(new EnterPack(new User(username.getText(), password.getText())));
                     if (answer.equals("Admin")) {
+                        Main.setAdminWindow(new AdminWindow());
                         Main.sendPacket(new AdminTablePack());
                         frame.dispose();
                     } else if (answer.equals("Success")) {
+                        Main.setMainWindow(new MainWindow(priority));
                         Main.sendPacket(new MainTablePack());
                         frame.dispose();
                     } else {

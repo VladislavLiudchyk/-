@@ -159,7 +159,7 @@ public class Main {
         return createArchiveWindow;
     }
 
-    public static void setCreateCaseWindow(CreateArchiveWindow createCaseWindow) { Main.createArchiveWindow = createArchiveWindow; }
+    public static void setCreateArchiveWindow(CreateArchiveWindow createArchiveWindow) { Main.createArchiveWindow = createArchiveWindow; }
 
     public static AdminWindow getAdminWindow() {
         return adminWindow;

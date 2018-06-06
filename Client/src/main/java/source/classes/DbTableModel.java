@@ -7,6 +7,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Класс, описывающий модель для таблиц
+ */
 public class DbTableModel extends AbstractTableModel implements Serializable {
     private ArrayList<String> columnNames = new ArrayList<String>();
     private ArrayList<Class> columnTypes = new ArrayList<Class>();

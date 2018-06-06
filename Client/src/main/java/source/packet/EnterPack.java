@@ -1,6 +1,7 @@
 package source.packet;
 
 import source.classes.User;
+import source.gui.EnterWindow;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -42,5 +43,7 @@ public class EnterPack extends AbstractPack{
 
     @Override
     public void handle() {
+        EnterWindow.setAnswer(answer);
+        EnterWindow.setPriority(priority);
     }
 }

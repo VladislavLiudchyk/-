@@ -2,12 +2,12 @@ package source;
 
 import org.apache.log4j.Logger;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Scanner;
 
 
@@ -27,7 +27,7 @@ public class ServerLoader {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println("Сервер запущен");
+        System.out.println("Server is running");
         start();
         handle();
         end();

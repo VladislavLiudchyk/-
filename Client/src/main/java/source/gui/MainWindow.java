@@ -44,6 +44,7 @@ public class MainWindow {
         //JButton refreshBtn = new JButton("Refresh");
         refreshBtn.setBorderPainted(false);
         refreshBtn.setVisible(true);
+        refreshBtn.setToolTipText("Обновить");
         refreshBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,9 +56,11 @@ public class MainWindow {
                 caseImg.getImage().SCALE_DEFAULT)));
         //JButton caseBtn = new JButton("Case");
         caseBtn.setBorderPainted(false);
+        caseBtn.setToolTipText("Добавить архив");
         caseBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Main.setCreateArchiveWindow(new CreateArchiveWindow());
             }
         });
         toolBar.add(caseBtn);
@@ -65,6 +68,7 @@ public class MainWindow {
                 delImg.getImage().SCALE_DEFAULT)));
         //JButton delBtn = new JButton("Del");
         delBtn.setBorderPainted(false);
+        delBtn.setToolTipText("Удалить архив");
         delBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,6 +88,7 @@ public class MainWindow {
                 backImg.getImage().SCALE_DEFAULT)));
         //JButton backBtn = new JButton("Back");
         backBtn.setBorderPainted(false);
+        backBtn.setToolTipText("Назад");
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

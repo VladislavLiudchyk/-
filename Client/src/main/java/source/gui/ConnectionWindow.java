@@ -57,6 +57,7 @@ public class ConnectionWindow {
                     Port = Integer.parseInt(password.getText());
                     JOptionPane.showMessageDialog(null, "IP" + IP + " | Port" + Port);
                     Main.setConnection(IP, Port);
+                    Main.setEnterWindow(new EnterWindow());
                     frame.dispose();
                 }
                 else {

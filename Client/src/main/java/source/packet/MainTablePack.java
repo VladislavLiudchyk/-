@@ -1,7 +1,9 @@
 package source.packet;
 
 import source.classes.DbTableModel;
+import source.gui.Main;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -42,6 +44,7 @@ public class MainTablePack extends AbstractPack{
 
     @Override
     public void handle() {
-
+        final JTable table = Main.getMainWindow().getTable();
+        table.setModel(model);
     }
 }

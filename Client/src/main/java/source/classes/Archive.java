@@ -13,6 +13,10 @@ public class Archive implements Serializable{
     private String phone;
     private String job;
 
+    public Archive() {
+
+    }
+
     public Archive(String surname, String name, String patronymic, String phone, String job) {
         this.surname = surname;
         this.name = name;

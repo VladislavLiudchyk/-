@@ -1,6 +1,8 @@
 package source.packet;
 
 import source.classes.Archive;
+import source.gui.CreateArchiveWindow;
+import source.gui.Main;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -43,6 +45,6 @@ public class OpenArchivePack extends AbstractPack{
 
     @Override
     public void handle() {
-
+        Main.setCreateArchiveWindow(new CreateArchiveWindow(openArchive));
     }
 }
